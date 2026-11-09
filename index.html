@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="description" content="Aplikasi keuangan pribadi: pemasukan, pengeluaran, laporan mingguan & bulanan, dan nasihat.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<title>Keuangan Saya</title>
+</head>
+<body>
+<header>
+  <h1>💰 Keuangan Saya</h1>
+  <p>Pemasukan, pengeluaran & pembukuan otomatis</p>
+</header>
+<main>
+  <nav class="tabbar noprint">
+    <button class="on" data-page="pTrx">Transaksi</button>
+    <button data-page="pLap">Laporan</button>
+    <button data-page="pNas">Nasihat</button>
+  </nav>
+
+  <div class="periodbar">
+    <div class="tabs noprint">
+      <button class="on" data-mode="mingguan">Mingguan</button>
+      <button data-mode="bulanan">Bulanan</button>
+    </div>
+    <div class="period">
+      <button class="nav prev">‹</button>
+      <span class="lbl"></span>
+      <button class="nav next">›</button>
+    </div>
+  </div>
+
+  <!-- TRANSAKSI -->
+  <section id="pTrx" class="page">
+    <div class="card" id="formCard">
+      <h3 id="formTitle">Catat Transaksi</h3>
+      <div class="toggle">
+        <button id="bIn" class="in-btn" data-type="in">+ Pemasukan</button>
+        <button id="bOut" class="out-btn on" data-type="out">− Pengeluaran</button>
+      </div>
+      <input id="amt" inputmode="numeric" placeholder="Jumlah (contoh: 25000)">
+      <input id="desc" placeholder="Keterangan (contoh: makan siang, gaji bulan ini)">
+      <select id="cat"></select>
+      <input id="date" type="date">
+      <button class="primary" id="save">Simpan</button>
+      <button class="primary secondary hide" id="cancel">Batal Edit</button>
+    </div>
+
+    <div class="grid" id="sum"></div>
+    <div id="brk"></div>
+
+    <div class="card">
+      <h3>Riwayat Transaksi</h3>
+      <p class="muted">Ketuk ✎ untuk mengedit, × untuk menghapus.</p>
+      <div id="list"></div>
+    </div>
+
+    <div class="card">
+      <h3>Transaksi Berulang (Otomatis)</h3>
+      <p class="muted">Contoh: gaji, listrik, wifi, kos. Dicatat otomatis setiap bulan.</p>
+      <select id="rType"><option value="out">Pengeluaran</option><option value="in">Pemasukan</option></select>
+      <input id="rAmt" inputmode="numeric" placeholder="Jumlah">
+      <input id="rDesc" placeholder="Keterangan">
+      <select id="rCat"></select>
+      <input id="rDay" inputmode="numeric" placeholder="Tanggal tiap bulan (1-31)">
+      <button class="primary" id="rSave">Tambah Berulang</button>
+      <div style="height:10px"></div>
+      <div id="recur"></div>
+    </div>
+  </section>
+
+  <!-- LAPORAN -->
+  <section id="pLap" class="page hide">
+    <div class="card" id="lapBody"></div>
+    <div class="card noprint">
+      <button class="primary" id="pdf">Simpan sebagai PDF (Cetak)</button>
+      <button class="primary secondary" id="copy">Salin Teks Laporan</button>
+      <textarea id="repTxt" class="hide" readonly></textarea>
+    </div>
+  </section>
+
+  <!-- NASIHAT -->
+  <section id="pNas" class="page hide">
+    <div id="nasBody"></div>
+  </section>
+</main>
+<script src="js/app.js"></script>
+</body>
+</html>
